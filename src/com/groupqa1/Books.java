@@ -18,9 +18,22 @@ public class Books {
         }
     }
 
+    public void addBook(Book book) {
+        if (arrSize < array.length) {
+            array[arrSize] = book;
+            arrSize++;
+        } else {
+            System.out.println("Books array out of range");
+        }
+    }
+
     public void printBooks() {
-        for (int i = 0; i < arrSize; i++) {
-            array[i].view();
+        if (arrSize == 0) {
+            System.out.println("Books array is empty");
+        } else {
+            for (int i = 0; i < arrSize; i++) {
+                array[i].view();
+            }
         }
     }
 
@@ -30,19 +43,39 @@ public class Books {
         }
     }
 
-    public void searchByAuthor(String author) {
+    public Books searchByAuthor(String author) {
+        int findCount = 0;
         for (int i = 0; i < arrSize; i++) {
             if (array[i].getAuthor().equals(author)) {
-                array[i].view();
+                findCount++;
             }
         }
+        Books findBooks = new Books(findCount);
+        if (findCount > 0) {
+            for (int i = 0; i < arrSize; i++) {
+                if (array[i].getAuthor().equals(author)) {
+                    findBooks.addBook(array[i]);
+                }
+            }
+        }
+        return findBooks;
     }
 
-    public void searchByYear(int year) {
+    public Books searchByYear(int year) {
+        int findCount = 0;
         for (int i = 0; i < arrSize; i++) {
             if (array[i].getYear() > year) {
-                array[i].view();
+                findCount++;
             }
         }
+        Books findBooks = new Books(findCount);
+        if (findCount > 0) {
+            for (int i = 0; i < arrSize; i++) {
+                if (array[i].getYear() > year) {
+                    findBooks.addBook(array[i]);
+                }
+            }
+        }
+        return findBooks;
     }
 }

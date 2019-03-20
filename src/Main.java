@@ -1,5 +1,7 @@
 import com.groupqa1.Books;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -15,15 +17,24 @@ public class Main {
         System.out.println("\nAll books:");
         books.printBooks();
 
-        books.changePrice(-20);
+        System.out.println("Enter percent: ");
+        Scanner sc = new Scanner(System.in);
+        int percent = sc.nextInt();
+        sc.nextLine();
+        books.changePrice(percent);
         System.out.println("\nAfter change price:");
         books.printBooks();
 
+        System.out.println("Enter author: ");
+        String author = sc.nextLine();
         System.out.println("\nSearch by author:");
-        books.searchByAuthor("J.K. Rowling");
+        books.searchByAuthor(author).printBooks();
 
+        System.out.println("Enter year: ");
+        int year = sc.nextInt();
+        sc.nextLine();
         System.out.println("\nFilter by year:");
-        books.searchByYear(2000);
+        books.searchByYear(year).printBooks();
 
     }
 }
